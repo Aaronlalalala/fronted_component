@@ -1,0 +1,24 @@
+.IMGcontanier{
+    background-color: black;
+    width:100%;
+    height:100%;
+}
+.PromptStyle{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    margin-top: 5%;
+    margin-left: 0%;
+}
+.DropBoxStyle{
+    display:flex;
+}
+.SliderStyle{
+    display:flex;
+}
+.CheckBoxStyle{
+    display: flex;
+}
+.ButtonStyle{
+    display: flex;;
+}
