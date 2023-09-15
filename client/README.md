@@ -73,38 +73,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 因為我是用creaye-creat-app new-app寫 才會有這麼多guide line
 web上主要分成幾個元件 有可以輸入字串的prompt 我是用input的寫法 有可以下拉的菜單(Drio box),可勾選選項(check box),滑軌(slider),按鈕(btn),然後分別配置到txt2img 還有 img2img 這兩個頁面 再用app.js將兩者用react-router-dom串在一起 並且這兩個頁面都可用NavLink連接 
 
-
-
-     <div className="TXTcontanier">
-        <div style={{width:"25%"}}><CheckPoint/></div>
-        <div className="NavStyle">
-            <span>
-                <NavLink to ='/ImgPage'><button>ImgPage</button></NavLink>
-            </span>
-        </div>
-        <div className="PromptStyle">
-            <div><Prompt/></div>
-            <div><NegativePrompt/></div>
-        </div>
-        <div className="DropBoxStyle"><SamplingMethod/></div>
-        <div className="SliderStyle"><SamplingStep/></div>
-        <div className="CheckBoxStyle">
-            <div><RestoreFaces/></div>
-            <div><Tilling/></div>
-            <div><Hires/></div>
-        </div>
-        <div className="SliderStyle">
-            <div><Width/></div>
-            <div><BatchCount/></div>
-            <div><Height/></div>
-            <div><BacthSize/></div>
-            <div><CFGScale/></div>
-        </div>
-        <div className="PromptStyle"><Seed/></div>
-        <div className="ButtonStyle">
-            <div><Dice/></div>
-            <div><Revolve/></div>
-        </div>
-        <div className="CheckBoxStyle"><Script/></div>
-        
-     </div>   
+     <Route path='/ImgPage' element={<ImgPage/>}></Route>

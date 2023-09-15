@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "../style/slider.css";
 
-function Height() {
+function DenoisingStrength() {
   const [sliderValue, setSliderValue] = useState(50);
   const [inputValue, setInputValue] = useState(50);
 
@@ -41,4 +41,4 @@ function Height() {
   );
 }
 
-export default Height;
+export default DenoisingStrength;

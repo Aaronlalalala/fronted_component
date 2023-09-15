@@ -1,12 +1,12 @@
 import React from 'react';
 import "../style/Button.css";
 
-function Revolve() {
-  const handleClick = () => { /* 看要按鈕回傳甚麼 */
+function DeepBooru() {
+  const handleClick = () => { 
     
     
   };
-  // return裡面到時候應該是插上式意圖
+  
   return (
     <button className="custom-button" onClick={handleClick}>
       點擊
@@ -14,4 +14,4 @@ function Revolve() {
   );
 }
 
-export default Revolve;
+export default DeepBooru;

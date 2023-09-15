@@ -16,7 +16,7 @@ function App() {
     <Router>
      <Routes>
       <Route path='/' element={<TxtPage/>}></Route>
-      <Route path='/ImgPage' element={<ImgPage/>}></Route>
+      <Route path="/ImgPage" element={<ImgPage/>}></Route>
      </Routes>
     </Router>
   </div>

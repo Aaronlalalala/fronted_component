@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "../style/CheckBox.css"
 
-function RestoreFaces() {
+function ResizeAndFill() {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckboxChange = () => {
@@ -10,7 +10,7 @@ function RestoreFaces() {
 
   return (
     <div className="checkbox-container">
-      <h3>RestoreFaces</h3>
+      <h3>Hires.fix</h3>
       <div
         className={`checkbox-icon ${isChecked ? 'checked' : ''}`}
         onClick={handleCheckboxChange}
@@ -22,4 +22,4 @@ function RestoreFaces() {
   );
 }
 
-export default RestoreFaces;
+export default ResizeAndFill;
