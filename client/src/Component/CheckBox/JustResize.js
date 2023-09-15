@@ -10,7 +10,7 @@ function JustResize() {
 
   return (
     <div className="checkbox-container">
-      <h3>Hires.fix</h3>
+      <h3>Just resize</h3>
       <div
         className={`checkbox-icon ${isChecked ? 'checked' : ''}`}
         onClick={handleCheckboxChange}

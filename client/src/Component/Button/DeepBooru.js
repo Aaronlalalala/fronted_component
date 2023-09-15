@@ -9,7 +9,7 @@ function DeepBooru() {
   
   return (
     <button className="custom-button" onClick={handleClick}>
-      點擊
+     Intergrate DeepBooru
     </button>
   );
 }

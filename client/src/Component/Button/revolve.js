@@ -9,7 +9,7 @@ function Revolve() {
   // return裡面到時候應該是插上式意圖
   return (
     <button className="custom-button" onClick={handleClick}>
-      點擊
+      Revolve
     </button>
   );
 }

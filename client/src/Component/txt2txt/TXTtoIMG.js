@@ -86,7 +86,7 @@ function TxtPage() {
         </span>
       </div>
       <div>
-        <Generate onClick={HandleGenerateClick} />{/* 点击按钮提交 */}
+        <Generate onClick={HandleGenerateClick} />{/* 點擊按鈕提交 */}
       </div>
       <div className="PromptStyle">
         <div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import "../style/Button.css";
 
-function dice() {
+function Dice() {
   const handleClick = () => { /* 看要按鈕回傳甚麼 */
     // 我是看到圖片有一個骰子的按鈕 所以我想說做一個骰子按鈕
     
@@ -9,9 +9,9 @@ function dice() {
 
   return (
     <button className="custom-button" onClick={handleClick}>
-      點擊
+      Dice
     </button>
   );
 }
 
-export default dice;
+export default Dice;

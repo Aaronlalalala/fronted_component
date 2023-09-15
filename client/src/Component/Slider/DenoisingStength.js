@@ -20,7 +20,7 @@ function DenoisingStrength() {
 
   return (
     <div className="slider-container">
-      <h4>SamplingStep</h4>
+      <h4>Denoising strength</h4>
       <input
         type="range"
         min="0"

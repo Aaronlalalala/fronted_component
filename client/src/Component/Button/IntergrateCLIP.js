@@ -9,7 +9,7 @@ function IntergrateCLIP() {
   
   return (
     <button className="custom-button" onClick={handleClick}>
-      點擊
+      IntergrateCLIP
     </button>
   );
 }

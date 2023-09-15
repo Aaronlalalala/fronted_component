@@ -16,7 +16,7 @@ function Styles() {
 
   return (
     <div className="dropdown-container">
-      <span style={{ color: "black" }}>Stable Diffusion CheckPoint</span>
+      <span style={{ color: "black" }}>Styles</span>
       <button onClick={toggleDropdown} className="dropdown-button">
         {selectedValue || '选择一个值'}
       </button>
