@@ -10,14 +10,13 @@ function LatentUpscale() {
 
   return (
     <div className="checkbox-container">
-      <h3>Jusr resize (latent upscale)</h3>
       <div
         className={`checkbox-icon ${isChecked ? 'checked' : ''}`}
         onClick={handleCheckboxChange}
       >
         {isChecked && <span>&#10003;</span>}
       </div>
-      <label className="checkbox-label">Restore faces</label>
+      <label className="checkbox-label">Jusr resize (latent upscale)</label>
     </div>
   );
 }

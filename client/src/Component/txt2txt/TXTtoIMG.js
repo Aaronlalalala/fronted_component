@@ -66,7 +66,7 @@ function TxtPage() {
 
   async function Jsonfunction(TxtToImgData) {
     try {
-      await axios.post("/api/txt2img/process", TxtToImgData.request);
+      await axios.post("http://localhost:8080/api/txt2img/process", TxtToImgData.request);
       alert("轉換成功");
     } catch (error) {
       console.error("Error sending data to backend:", error);
@@ -75,7 +75,7 @@ function TxtPage() {
 
   return (
     <div className="TXTcontanier">
-      <div style={{ width: "25%" }}>
+      <div style={{position:"absolute",left:"300px" }}>
         <CheckPoint />
       </div>
       <div className="NavStyle">
@@ -85,8 +85,16 @@ function TxtPage() {
           </NavLink>
         </span>
       </div>
-      <div>
-        <Generate onClick={HandleGenerateClick} />{/* 點擊按鈕提交 */}
+      <div className="ButtonStyle">
+        <div>
+          <Dice />
+        </div>
+        <div>
+          <Generate onClick={HandleGenerateClick}/>
+        </div>
+        <div>
+          <Revolve />
+        </div>
       </div>
       <div className="PromptStyle">
         <div>
@@ -96,11 +104,12 @@ function TxtPage() {
           <NegativePrompt />
         </div>
       </div>
-      <div className="DropBoxStyle">
+      <div className="DropBoxStyle" style={{position:"relative",left:"30%"}}>
         <SamplingMethod />
       </div>
       <div className="SliderStyle">
         <SamplingStep />
+
       </div>
       <div className="CheckBoxStyle">
         <div>
@@ -112,7 +121,7 @@ function TxtPage() {
         <div>
           <Hires />
         </div>
-        <div>
+        <div >
           <Styles />
         </div>
       </div>
@@ -135,17 +144,6 @@ function TxtPage() {
       </div>
       <div className="PromptStyle">
         <Seed />
-      </div>
-      <div className="ButtonStyle">
-        <div>
-          <Dice />
-        </div>
-        <div>
-          <Revolve />
-        </div>
-      </div>
-      <div className="CheckBoxStyle">
-        <Script />
       </div>
     </div>
   );

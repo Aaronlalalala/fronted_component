@@ -10,14 +10,13 @@ function ResizeAndFill() {
 
   return (
     <div className="checkbox-container">
-      <h3>Resize and fill</h3>
       <div
         className={`checkbox-icon ${isChecked ? 'checked' : ''}`}
         onClick={handleCheckboxChange}
       >
         {isChecked && <span>&#10003;</span>}
       </div>
-      <label className="checkbox-label">Restore faces</label>
+      <label className="checkbox-label">Resize and fill</label>
     </div>
   );
 }

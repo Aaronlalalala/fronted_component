@@ -16,7 +16,7 @@ function Script() {
 
   return (
     <div className="dropdown-container">
-      <span style={{ color: "black" }}>Stable Diffusion CheckPoint</span>
+      <span style={{ color: "black" }}>Script</span>
       <button onClick={toggleDropdown} className="dropdown-button">
         {selectedValue || '选择一个值'}
       </button>

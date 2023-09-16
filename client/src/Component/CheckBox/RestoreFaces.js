@@ -10,7 +10,6 @@ function RestoreFaces() {
 
   return (
     <div className="checkbox-container">
-      <h3>Restore faces</h3>
       <div
         className={`checkbox-icon ${isChecked ? 'checked' : ''}`}
         onClick={handleCheckboxChange}

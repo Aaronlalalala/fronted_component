@@ -80,7 +80,7 @@ function ImgPage() {
 
   async function jsonFunction(imgToImgData) {
     try {
-      await axios.post("/api/img2img/process", imgToImgData.request);
+      await axios.post("https://localhost:8080/api/img2img/process", imgToImgData.request);
       alert("轉換成功");
     } catch (error) {
       console.log("Error sending data to backend:", error);
@@ -94,8 +94,8 @@ function ImgPage() {
       </div>
       <div className="NavStyle">
         <span>
-          <NavLink to="/ImgPage">
-            <button>ImgPage</button>
+          <NavLink to="/">
+            <button>TxtPage</button>
           </NavLink>
         </span>
       </div>

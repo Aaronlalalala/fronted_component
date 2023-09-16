@@ -8,7 +8,7 @@ import './App.css';
 //import CustomButton from './Component/txt/Button';
 import ImgPage from "./Component/img2img/IMGtoIMG";
 import TxtPage from "./Component/txt2txt/TXTtoIMG";
-
+//import MainPage from "./Component/mainPage/MainPage";
 function App() {
   //const [userstate, setUserState] = useState({});
   return (
