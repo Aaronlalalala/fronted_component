@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "../style/slider.css";
 
-function Height({ value, onChange }) {
+function Seed({ value, onChange }) {
   const [sliderValue, setSliderValue] = useState(value);
   const [inputValue, setInputValue] = useState(value);
 
@@ -9,7 +9,7 @@ function Height({ value, onChange }) {
     const newValue = parseInt(e.target.value, 10);
     setSliderValue(newValue);
     setInputValue(newValue);
-    onChange(newValue); 
+    onChange(newValue); // 通知父組件TXTPage 數值以更改
   };
 
   const handleInputChange = (e) => {
@@ -17,12 +17,12 @@ function Height({ value, onChange }) {
     newValue = Math.min(100, Math.max(0, newValue));
     setSliderValue(newValue);
     setInputValue(newValue);
-    onChange(newValue); 
+    onChange(newValue); // 通知父组件值已更改
   };
 
   return (
     <div className="slider-container">
-      <h4>Height</h4>
+      <h4>Seed</h4>
       <input
         type="range"
         min="0"
@@ -43,4 +43,4 @@ function Height({ value, onChange }) {
   );
 }
 
-export default Height;
+export default Seed;

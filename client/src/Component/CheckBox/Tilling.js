@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import "../style/CheckBox.css"
+import "../style/CheckBox.css";
 
-function Tilling() {
+function Tilling({ onChange }) {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
+    const newCheckedValue = !isChecked;
+    setIsChecked(newCheckedValue);
+    onChange(newCheckedValue); // 通知父组件复选框的状态已更改
   };
 
   return (

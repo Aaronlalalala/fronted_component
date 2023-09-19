@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import "../style/slider.css";
 
-function DenoisingStrength() {
-  const [sliderValue, setSliderValue] = useState(50);
-  const [inputValue, setInputValue] = useState(50);
+function DenoisingStrength({ value, onChange }) {
+  const [sliderValue, setSliderValue] = useState(value);
+  const [inputValue, setInputValue] = useState(value);
 
   const handleSliderChange = (e) => {
     const newValue = parseInt(e.target.value, 10);
     setSliderValue(newValue);
     setInputValue(newValue);
+    onChange(newValue); // 通知父組件TXTPage 數值以更改
   };
 
   const handleInputChange = (e) => {
@@ -16,11 +17,12 @@ function DenoisingStrength() {
     newValue = Math.min(100, Math.max(0, newValue));
     setSliderValue(newValue);
     setInputValue(newValue);
+    onChange(newValue); // 通知父组件值已更改
   };
 
   return (
     <div className="slider-container">
-      <h4>Denoising strength</h4>
+      <h4>Denoising Strength </h4>
       <input
         type="range"
         min="0"

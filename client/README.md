@@ -73,4 +73,41 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 因為我是用creaye-creat-app new-app寫 才會有這麼多guide line
 web上主要分成幾個元件 有可以輸入字串的prompt 我是用input的寫法 有可以下拉的菜單(Drio box),可勾選選項(check box),滑軌(slider),按鈕(btn),然後分別配置到txt2img 還有 img2img 這兩個頁面 再用app.js將兩者用react-router-dom串在一起 並且這兩個頁面都可用NavLink連接 
 
-     <Route path='/ImgPage' element={<ImgPage/>}></Route>
+
+1. component 定標  使用onChange去監聽數值變動
+    prompt: "",    // prompt 
+    seed: 0, //randoom value -1 to infinite => 使用slider 去做數值調動 int  (V)
+    batch_size: 0, // slider                                               (v)
+    steps: 0, // slider                                                    (v)
+    cfg_scale: 0, //slider                                                 (V)
+    width: 0, //slider (fix)                                               (V)
+    height: 0, //slider (fix)                                              (V)
+    restore_faces: false, //checkBox                                       (v)
+    tiling: false, //checkBox                                              (V)
+    negative_prompt: "", //prompt                                          (V)
+    denoising_strength: 0, //slider                                        (V)
+    override_settings: {
+      sd_model_checkpoint: "" }    // checkPoint => DropBox 
+-------------------------------------不確定區域------------------------------------------------------------------------------------------
+     resize_mode: 0, //slider                                               (X)
+    n_iter: 0, //                                                        
+    styles: [], //選集
+    eta: 0, // ?
+    sampler_index: "",  //?
+    alwayson_scripts: "",init_images: "",   // phote to string in binary 
+    inpaint_full_res: false, // ?
+    inpaint_full_res_padding: 0, // button check  
+    inpainting_mask_invert: 0, // ?
+    initial_noise_multiplier: 0, // ?
+    mask_blur: 0, //?
+
+----------------------------------------------------------------------------------------------------------------------------------------
+2. 元件修改 --> onChanege 
+3. parent component 監聽
+    針對PROMPT的文字轉成字串 針對SLIDER 的數值轉成INT 針對CHECKBOX的勾選狀態轉成BOOLEAN VALUE 
+    在TXTPage 及 IMGPage 調用元件的數值 用prop傳遞參數到父組件
+---------------------------------------------------------------------------------------------------------------------------------------- 
+4. 回傳json
+    將多個按鈕的值做成可變動 但是用Generte按鈕來控制json文件的傳遞 避免後端服務擁擠
+----------------------------------------------------------------------------------------------------------------------------------------
+5. 確認對應api json to backend dataBase

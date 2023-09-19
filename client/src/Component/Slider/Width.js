@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import "../style/slider.css";
 
-function Width() {
-  const [sliderValue, setSliderValue] = useState(50);
-  const [inputValue, setInputValue] = useState(50);
+function Width({ value, onChange }) {
+  const [sliderValue, setSliderValue] = useState(value);
+  const [inputValue, setInputValue] = useState(value);
 
   const handleSliderChange = (e) => {
     const newValue = parseInt(e.target.value, 10);
     setSliderValue(newValue);
     setInputValue(newValue);
+    onChange(newValue); 
   };
 
   const handleInputChange = (e) => {
@@ -16,11 +17,12 @@ function Width() {
     newValue = Math.min(100, Math.max(0, newValue));
     setSliderValue(newValue);
     setInputValue(newValue);
+    onChange(newValue); 
   };
 
   return (
     <div className="slider-container">
-      <h4>Width</h4>
+      <h4>width</h4>
       <input
         type="range"
         min="0"

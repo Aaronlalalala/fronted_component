@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import "../style/slider.css";
 
-function BatchSize() {
-  const [sliderValue, setSliderValue] = useState(50);
-  const [inputValue, setInputValue] = useState(50);
+function BatchSize({ value, onChange }) {
+  const [sliderValue, setSliderValue] = useState(value);
+  const [inputValue, setInputValue] = useState(value);
 
   const handleSliderChange = (e) => {
     const newValue = parseInt(e.target.value, 10);
     setSliderValue(newValue);
     setInputValue(newValue);
+    onChange(newValue); // 通知父組件TXTPage 數值以更改
   };
 
   const handleInputChange = (e) => {
@@ -16,6 +17,7 @@ function BatchSize() {
     newValue = Math.min(100, Math.max(0, newValue));
     setSliderValue(newValue);
     setInputValue(newValue);
+    onChange(newValue); // 通知父组件值已更改
   };
 
   return (
