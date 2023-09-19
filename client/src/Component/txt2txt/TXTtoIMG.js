@@ -39,10 +39,20 @@ function TxtPage() {
     width: 0, //slider (fix)
     height: 0, //slider (fix)
     restore_faces: false, //checkBox
-    tilling: false, //checkBox
+    tiling: false, //checkBox
     eta: 0, // ?
     sampler_index: "",  //?
     alwayson_scripts: "",
+    enable_hr: false,
+    hr_upscaler: "",
+    hr_second_pass_steps: 0,
+    denoising_strength: 0,
+    hr_scale: 0,
+    hr_resize_x: 0,
+    hr_resize_y: 0,
+    override_settings: {
+      sd_model_checkpoint: ""
+    },
   });
   function camelCaseToSnakeCase(input) {
     return input.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase();
@@ -106,7 +116,7 @@ function TxtPage() {
   return (
     <div className="TXTcontanier">
       <div style={{position:"absolute",left:"300px" }}>
-        <CheckPoint />
+        <CheckPoint value={formData.override_settings.sd_model_checkpoint} onChange={(value)=>handleFormDataChange("override_settings.sd_model_checkpoint",value)}/>
       </div>
       <div className="NavStyle">
         <span>
@@ -135,7 +145,7 @@ function TxtPage() {
         </div>
       </div>
       <div className="DropBoxStyle" style={{position:"relative",left:"30%"}}>
-        <SamplingMethod />
+        <SamplingMethod value={formData.sampler_index} onChange={(value) => handleFormDataChange("sampler_index",value)}/>
       </div>
       <div className="SliderStyle">
         <SamplingStep value={formData.steps} onChange={(value) => handleFormDataChange("steps",value)} />
@@ -146,13 +156,13 @@ function TxtPage() {
           <RestoreFaces value={formData.restore_faces} onChange={(value) => handleFormDataChange("restore_faces",value)}/>
         </div>
         <div>
-          <Tilling value={formData.tilling} onChange={(value) => handleFormDataChange("tilling",value)} />
+          <Tilling value={formData.tiling} onChange={(value) => handleFormDataChange("tiling",value)} />
         </div>
         <div>
           <Hires />
         </div>
         <div >
-          <Styles />
+          <Styles value={formData.styles} onChange={(value)=>handleFormDataChange("styles",value)} />
         </div>
       </div>
       <div className="SliderStyle">
@@ -160,7 +170,7 @@ function TxtPage() {
           <Width value={formData.width} onChange={(value) => handleFormDataChange("width",value)} />
         </div>
         <div>
-          <BatchCount />
+          <BatchCount value={formData.n_iter} onChange={(value) => handleFormDataChange("n_iter",value)}/>
         </div>
         <div>
           <Height value={formData.height} onChange={(value) => handleFormDataChange("height",value)}/>

@@ -6,10 +6,6 @@ import NegativePrompt from "../Prompt/NegativePrompt";
 import Generate from "../Button/Generate";
 import IntergrateCLIP from '../Button/IntergrateCLIP';
 import DeepBooru from '../Button/DeepBooru';
-import JustResize from '../CheckBox/JustResize';
-import CropAndResize from '../CheckBox/CropAndResize';
-import ResizeAndFill from '../CheckBox/ResizeAndFill';
-import LatentUpscale from '../CheckBox/LatentUpscale';
 import SamplingMethod from "../DropBox/SamplingMethod";
 import SamplingStep from "../Slider/SamplingStep";
 import RestoreFaces from "../CheckBox/RestoreFaces";
@@ -24,7 +20,10 @@ import Seed from "../Slider/Seed";
 import Script from "../DropBox/Script";
 import axios from 'axios';
 import { NavLink } from "react-router-dom";
+import ResizeMode from "../DropBox/ResizeMode"; 
 
+// -----------------------------------------------------------------------------------------------------------------//
+// resize mode 對應到
 function ImgPage() {
   const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
   const [imgData, setImgData] = useState({
@@ -69,7 +68,7 @@ function ImgPage() {
   
     // 查看更新
     console.log(`Field ${fieldName} updated to:`, value);
-    console.log(imgData);
+    
   };
   
   const handleGenerateClick = () => {
@@ -102,7 +101,7 @@ function ImgPage() {
   return (
     <div className="IMGcontainer">
       <div style={{ width: "25%" }}>
-        <CheckPoint />
+        <CheckPoint value={imgData.override_settings.sd_model_checkpoint} onChange={(value)=>handleFormDataChange("override_settings.sd_model_checkpoint",value)} />
       </div>
       <div className="NavStyle">
         <span>
@@ -116,37 +115,33 @@ function ImgPage() {
        <NegativePrompt value={imgData.negative_prompt} onChange={(value) => handleFormDataChange("negative_prompt",value)} />
       </div>
       <div className="ButtonStyle">
-        <IntergrateCLIP />
+        <IntergrateCLIP /> 
         <DeepBooru />
         <Generate onClick={handleGenerateClick} />
       </div>
-      <div className="CheckBoxStyle">
-        <JustResize />
-        <CropAndResize />
-        <ResizeAndFill />
-        <LatentUpscale />
-      </div>
+      
       <div className="DropBoxStyle">
-        <SamplingMethod />
+        <SamplingMethod value={imgData.sampler_index} onChange={(value) => handleFormDataChange("sampler_index",value)} />
+        <ResizeMode value={imgData.resize_mode} onChange={(value) => handleFormDataChange("resize_mode",value)}></ResizeMode>
       </div>
       <div className="CheckBoxStyle">
       <RestoreFaces value={imgData.restore_faces} onChange={(value) => handleFormDataChange("restore_faces",value)}/>
-      <Tilling value={imgData.tilling} onChange={(value) => handleFormDataChange("tilling",value)} />
+      <Tilling value={imgData.tiling} onChange={(value) => handleFormDataChange("tiling",value)} />
       </div>
       <div className="SliderStyle">
       <SamplingStep value={imgData.steps} onChange={(value) => handleFormDataChange("steps",value)} />
       <Width value={imgData.width} onChange={(value) => handleFormDataChange("width",value)} />
       <Height value={imgData.height} onChange={(value) => handleFormDataChange("height",value)}/>
-        <BatchCount />
+        <BatchCount value={imgData.n_iter} onChange={(value) => handleFormDataChange("n_iter",value)}/>
         <BatchSize value={imgData.batch_size} onChange={(value) => handleFormDataChange('batch_size', value)} />
         <CFGScale value={imgData.cfg_scale} onChange={(value) => handleFormDataChange("cfg_scale",value)} />
-        <DenoisingStrength />
+        <DenoisingStrength value={imgData.denoising_strength} onChange={(value) => handleFormDataChange("denoising_strength",value)} />
       </div>
       <div className="PromptStyle">
       <Seed value={imgData.seed} onChange={(value)=>handleFormDataChange("seed",value) }/>
       </div>
       <div className="DropBoxStyle">
-        <Script />
+        <Script value={imgData.alwayson_scripts} onChange={(value) => handleFormDataChange} />
       </div>
     </div>
   );

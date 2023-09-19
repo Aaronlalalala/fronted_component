@@ -1,24 +1,25 @@
 import React, { useState } from 'react';
 import "../style/Dropdown.css";
 
-function CheckPoint() {
+function CheckPoint({ value, onChange }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState(null);
+  const [selectedValue, setSelectedValue] = useState(null); // 確保這裡有定義
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleOptionClick = (value) => {
-    setSelectedValue(value); 
+  const handleOptionClick = (selectedValue) => {
+    setSelectedValue(selectedValue); 
     toggleDropdown();
+    onChange(selectedValue);
   };
 
   return (
     <div className="dropdown-container">
       <span style={{ color: "black" }}>Stable Diffusion CheckPoint</span>
       <button onClick={toggleDropdown} className="dropdown-button">
-        {selectedValue || '选择一个值'}
+        {value || '選擇一個值'}
       </button>
       <ul className={`dropdown-menu ${isOpen ? 'active' : ''}`}>
         <li onClick={() => handleOptionClick(1)}>1</li>
@@ -30,4 +31,6 @@ function CheckPoint() {
 }
 
 export default CheckPoint;
+
+
 
