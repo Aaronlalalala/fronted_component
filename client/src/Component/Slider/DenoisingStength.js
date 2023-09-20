@@ -14,7 +14,7 @@ function DenoisingStrength({ value, onChange }) {
 
   const handleInputChange = (e) => {
     let newValue = parseInt(e.target.value, 10);
-    newValue = Math.min(100, Math.max(0, newValue));
+    newValue = Math.min(1, Math.max(0, newValue));
     setSliderValue(newValue);
     setInputValue(newValue);
     onChange(newValue); // 通知父组件值已更改
@@ -26,7 +26,7 @@ function DenoisingStrength({ value, onChange }) {
       <input
         type="range"
         min="0"
-        max="100"
+        max="1"
         value={sliderValue}
         className="slider"
         onChange={handleSliderChange}
@@ -34,7 +34,7 @@ function DenoisingStrength({ value, onChange }) {
       <input
         type="number"
         min="0"
-        max="100"
+        max="1"
         value={inputValue}
         className="input"
         onChange={handleInputChange}

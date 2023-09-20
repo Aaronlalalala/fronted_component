@@ -14,7 +14,7 @@ function SamplingStep({ value, onChange }) {
 
   const handleInputChange = (e) => {
     let newValue = parseInt(e.target.value, 10);
-    newValue = Math.min(100, Math.max(0, newValue));
+    newValue = Math.min(150, Math.max(20, newValue));
     setSliderValue(newValue);
     setInputValue(newValue);
     onChange(newValue); 
@@ -25,16 +25,16 @@ function SamplingStep({ value, onChange }) {
       <h4>SamplingStep</h4>
       <input
         type="range"
-        min="0"
-        max="100"
+        min="20"
+        max="150"
         value={sliderValue}
         className="slider"
         onChange={handleSliderChange}
       />
       <input
         type="number"
-        min="0"
-        max="100"
+        min="20"
+        max="150"
         value={inputValue}
         className="input"
         onChange={handleInputChange}

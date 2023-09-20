@@ -27,32 +27,32 @@ import axios from "axios";
 function TxtPage() {
   const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
   const [formData, setFormData] = useState({
-    prompt: "",    // prompt 
-    negative_prompt: "",  //prompt 
-    denoising_strength: 0, //slider 
-    styles: [], //選集
-    seed: 0, //randoom value -1 to infinite
-    batch_size: 0, // slider 
-    n_iter: 0, // ?
-    steps: 0, // slider 
-    cfg_scale: 0, //slider 
-    width: 0, //slider (fix)
-    height: 0, //slider (fix)
-    restore_faces: false, //checkBox
-    tiling: false, //checkBox
-    eta: 0, // ?
-    sampler_index: "",  //?
-    alwayson_scripts: "",
     enable_hr: false,
-    hr_upscaler: "",
-    hr_second_pass_steps: 0,
     denoising_strength: 0,
-    hr_scale: 0,
+    hr_scale: 2,
+    hr_upscaler: "Latent",
+    hr_second_pass_steps: 0,
     hr_resize_x: 0,
     hr_resize_y: 0,
-    override_settings: {
-      sd_model_checkpoint: ""
+    prompt: "A cat",
+    styles: [],
+    seed: -1,
+    batch_size: 1,
+    n_iter: 1,
+    steps: 20,
+    cfg_scale: 7,
+    width: 512,
+    height: 512,
+    restore_faces: false,
+    tiling: false,
+    negative_prompt: "",
+    eta: 0,
+    override_settings: { 
+      sd_model_checkpoint: "sd-v1-5-inpainting.ckpt [c6bbc15e32]" 
     },
+    script_args: [],
+    sampler_index: "Euler a",
+    alwayson_scripts: {}
   });
   function camelCaseToSnakeCase(input) {
     return input.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase();
@@ -83,27 +83,7 @@ function TxtPage() {
       Jsonfunction(TxtToImgData);
     }
   };
-//-----------------------------------------------------------------------------------------------------------------------------------------//
-  /*
-    function ParentComponent() {
-    const [childValue, setChildValue] = useState("");
 
-    // 步骤 1: 定义回调函数
-    const handleChildValueChange = (newValue) => {
-    setChildValue(newValue); // 在这里更新父组件的状态
-    }; 
-
-    return (
-    <div>
-      <ChildComponent onChange={handleChildValueChange} />
-      <p>Child Value in Parent: {childValue}</p>
-    </div>
-    );
-    }
-
-    export default ParentComponent; 
-    */
-//------------------------------------------------------------------------------------------------------------------------------------------//
   async function Jsonfunction(TxtToImgData) {
     try {
       await axios.post("http://localhost:8080/api/txt2img/process", TxtToImgData.request);
