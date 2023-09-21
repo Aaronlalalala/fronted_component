@@ -3,7 +3,6 @@ import "./TXT.css";
 import Dice from "../Button/Dice";
 import Revolve from "../Button/Revolve";
 import Generate from "../Button/Generate"; 
-import Hires from "../CheckBox/Hires";
 import RestoreFaces from "../CheckBox/RestoreFaces";
 import Tilling from "../CheckBox/Tilling";
 import CheckPoint from "../DropBox/CheckPoint";
@@ -21,11 +20,18 @@ import Width from "../Slider/Width";
 import { NavLink } from "react-router-dom";
 import Height from "../Slider/Height";
 import axios from "axios";
-
+import Hires from "../CheckBox/Hires";
+import Upscaler from "../ForHireFix/Upscaler";
+import DenoisingStrength from "../ForHireFix/DenoisingStength";
+import UpscaleBy from "../ForHireFix/UpscaleBy";
+import HireSteps from "../ForHireFix/HireSteps";
+import ResizeHeight from "../ForHireFix/ResizeHeight";
+import ResizeWidth from "../ForHireFix/ResizeWidth";
 // 已新增prompt , slider , checkBox之onChange 
 
 function TxtPage() {
   const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
+  const [isHiresChecked,setIsHiresChecked] = useState(false);
   const [formData, setFormData] = useState({
     enable_hr: false,
     denoising_strength: 0,
@@ -66,6 +72,10 @@ function TxtPage() {
     // 查看更新
     console.log(`Field ${fieldName} updated to:`, value);
   };
+  //---------------------------------------------------------------------------------------------------------//
+  const handleHiresCheckboxChange = (value) => {
+    setIsHiresChecked(value);
+  };
 
   const HandleGenerateClick = () => {
     const confirmed = window.confirm("確定要提交嗎？");
@@ -92,7 +102,7 @@ function TxtPage() {
       console.error("Error sending data to backend:", error);
     }
   };
-
+  /* 新增checkBOX 使得隱藏元件可以被顯現 => 改變formData 使useState 初始值可以被更改 */
   return (
     <div className="TXTcontanier">
       <div style={{position:"absolute",left:"300px" }}>
@@ -139,7 +149,42 @@ function TxtPage() {
           <Tilling value={formData.tiling} onChange={(value) => handleFormDataChange("tiling",value)} />
         </div>
         <div>
-          <Hires />
+        <Hires
+            value={formData.enable_hr}
+            onChange={(value) => {
+              handleFormDataChange("enable_hr", value);
+              handleHiresCheckboxChange(value); // 設置 isHiresChecked 的值
+            }}
+          />
+          {isHiresChecked && (
+            <div>
+              {/* 顯示子元件 */}
+              <Upscaler
+                value={formData.hr_upscaler}
+                onChange={(value) => handleFormDataChange("hr_upscaler", value)}
+              />
+              <DenoisingStrength
+                value={formData.denoising_strength}
+                onChange={(value) => handleFormDataChange("denoising_strength", value)}
+              />
+              <UpscaleBy
+                value={formData.hr_scale}
+                onChange={(value) => handleFormDataChange("hr_scale", value)}
+              />
+              <HireSteps
+                value={formData.hr_second_pass_steps}
+                onChange={(value) => handleFormDataChange("hr_second_pass_steps", value)}
+              />
+              <ResizeHeight
+                value={formData.hr_resize_x}
+                onChange={(value) => handleFormDataChange("hr_resize_x", value)}
+              />
+              <ResizeWidth
+                value={formData.hr_resize_y}
+                onChange={(value) => handleFormDataChange("hr_resize_y", value)}
+              />
+            </div>
+          )}
         </div>
         <div >
           <Styles value={formData.styles} onChange={(value)=>handleFormDataChange("styles",value)} />

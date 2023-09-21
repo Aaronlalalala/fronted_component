@@ -20,7 +20,7 @@ import Script from "../DropBox/Script";
 import axios from 'axios';
 import { NavLink } from "react-router-dom";
 import ResizeMode from "../DropBox/ResizeMode"; 
-import DenoisingS2 from "../Slider/DenoisingS2";
+import DenoisingS2 from "../ForHireFix/DenoisingS2";
 // -----------------------------------------------------------------------------------------------------------------//
 // resize mode 對應到
 function ImgPage() {
