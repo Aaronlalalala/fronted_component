@@ -14,7 +14,7 @@ function UpscaleBy({ value, onChange }) {
 
   const handleInputChange = (e) => {
     let newValue = parseInt(e.target.value, 10);
-    newValue = Math.min(100, Math.max(1, newValue));
+    newValue = Math.min(4, Math.max(2, newValue));
     setSliderValue(newValue);
     setInputValue(newValue);
     onChange(newValue); // 通知父组件值已更改
@@ -25,16 +25,16 @@ function UpscaleBy({ value, onChange }) {
       <h4>Upscale By</h4>
       <input
         type="range"
-        min="1"
-        max="100"
+        min="2"
+        max="4"
         value={sliderValue}
         className="slider"
         onChange={handleSliderChange}
       />
       <input
         type="number"
-        min="1"
-        max="100"
+        min="2"
+        max="4"
         value={inputValue}
         className="input"
         onChange={handleInputChange}

@@ -3,30 +3,34 @@ import "../style/slider.css";
 
 function DenoisingStrength({ value, onChange }) {
   const [sliderValue, setSliderValue] = useState(value);
-  const [inputValue, setInputValue] = useState(value);
+  const [inputValue, setInputValue] = useState(value.toFixed(2)); 
 
   const handleSliderChange = (e) => {
-    const newValue = parseInt(e.target.value, 10);
+    const newValue = parseFloat(e.target.value);
     setSliderValue(newValue);
-    setInputValue(newValue);
-    onChange(newValue); // 通知父組件TXTPage 數值以更改
+    setInputValue(newValue.toFixed(2));
+    onChange(newValue);
   };
 
   const handleInputChange = (e) => {
-    let newValue = parseInt(e.target.value, 10);
+    let newValue = parseFloat(e.target.value);
+    if (isNaN(newValue)) {
+      newValue = 0; 
+    }
     newValue = Math.min(1, Math.max(0, newValue));
     setSliderValue(newValue);
-    setInputValue(newValue);
-    onChange(newValue); // 通知父组件值已更改
+    setInputValue(newValue.toFixed(2)); 
+    onChange(newValue);
   };
 
   return (
     <div className="slider-container">
-      <h4>Denoising Strength </h4>
+      <h4>Denoising Strength</h4>
       <input
         type="range"
         min="0"
         max="1"
+        step="0.01" 
         value={sliderValue}
         className="slider"
         onChange={handleSliderChange}
@@ -35,6 +39,7 @@ function DenoisingStrength({ value, onChange }) {
         type="number"
         min="0"
         max="1"
+        step="0.01" 
         value={inputValue}
         className="input"
         onChange={handleInputChange}
@@ -44,3 +49,4 @@ function DenoisingStrength({ value, onChange }) {
 }
 
 export default DenoisingStrength;
+

@@ -22,7 +22,7 @@ import { NavLink } from "react-router-dom";
 import ResizeMode from "../DropBox/ResizeMode"; 
 import DenoisingS2 from "../ForHireFix/DenoisingS2";
 // -----------------------------------------------------------------------------------------------------------------//
-// resize mode 對應到
+
 function ImgPage() {
   const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
   const [imgData, setImgData] = useState({

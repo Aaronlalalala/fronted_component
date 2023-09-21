@@ -14,7 +14,7 @@ function Width({ value, onChange }) {
 
   const handleInputChange = (e) => {
     let newValue = parseInt(e.target.value, 10);
-    newValue = Math.min(512, Math.max(511, newValue));
+    newValue = Math.min(512, Math.max(512, newValue));
     setSliderValue(newValue);
     setInputValue(newValue);
     onChange(newValue); 
@@ -25,7 +25,7 @@ function Width({ value, onChange }) {
       <h4>width</h4>
       <input
         type="range"
-        min="511"
+        min="512"
         max="512"
         value={sliderValue}
         className="slider"
@@ -33,7 +33,7 @@ function Width({ value, onChange }) {
       />
       <input
         type="number"
-        min="511"
+        min="512"
         max="512"
         value={inputValue}
         className="input"

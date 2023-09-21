@@ -22,7 +22,7 @@ function CheckPoint({ value, onChange }) {
         {value || '選擇一個值'}
       </button>
       <ul className={`dropdown-menu ${isOpen ? 'active' : ''}`}>
-        <li onClick={() => handleOptionClick(1)}>1</li>
+        <li onClick={() => handleOptionClick("sd-v1-5-inpainting.ckpt [c6bbc15e32]")}>sd-v1-5-inpainting.ckpt [c6bbc15e32]</li>
         <li onClick={() => handleOptionClick(2)}>2</li>
         <li onClick={() => handleOptionClick(3)}>3</li>
       </ul>

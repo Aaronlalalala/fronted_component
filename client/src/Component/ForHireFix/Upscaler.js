@@ -22,7 +22,7 @@ function Upscaler({ value, onChange }) {
         {selectedValue || '选择一个值'}
       </button>
       <ul className={`dropdown-menu ${isOpen ? 'active' : ''}`}>
-        <li onClick={() => handleOptionClick(1)}>1</li>
+        <li onClick={() => handleOptionClick("Latent")}>Latent</li>
         <li onClick={() => handleOptionClick(2)}>2</li>
         <li onClick={() => handleOptionClick(3)}>3</li>
       </ul>
