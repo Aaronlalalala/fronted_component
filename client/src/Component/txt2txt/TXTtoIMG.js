@@ -26,7 +26,7 @@ import UpscaleBy from "../ForHireFix/UpscaleBy";
 import HireSteps from "../ForHireFix/HireSteps";
 import ResizeHeight from "../ForHireFix/ResizeHeight";
 import ResizeWidth from "../ForHireFix/ResizeWidth";
-
+// lazy 動態加載
 function TxtPage() {
   const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
   const [isHiresChecked, setIsHiresChecked] = useState(false);
@@ -151,12 +151,12 @@ function TxtPage() {
         </div>
         <div>
         <Hires
-  value={formData.enable_hr}
-  onChange={(value) => {
-    handleFormDataChange("enable_hr", value);
-    handleHiresCheckboxChange(value); // 設置 isHiresChecked 的值
-  }}
-/>
+          value={formData.enable_hr}
+          onChange={(value) => {
+         handleFormDataChange("enable_hr", value);
+         handleHiresCheckboxChange(value); // 設置 isHiresChecked 的值
+         }}
+        />
       {isHiresChecked ? (
          <div>
          {/* 顯示子元件 */}
@@ -185,12 +185,13 @@ function TxtPage() {
            onChange={(value) => handleFormDataChange("hr_resize_y", value)}
         />
        </div>
-  ) : null}
+       ) : null}
         </div>
         <div>
           <Styles value={formData.styles} onChange={(value) => handleFormDataChange("styles", value)} />
         </div>
       </div>
+      
       <div className="SliderStyle">
         <div>
           <Width value={formData.width} onChange={(value) => handleFormDataChange("width", value)} />
