@@ -22,6 +22,7 @@ import { NavLink } from "react-router-dom";
 import ResizeMode from "../DropBox/ResizeMode"; 
 import DenoisingS2 from "../ForHireFix/DenoisingS2";
 import ForScript from "../ForScript/ForScript";
+import ImageUploader from "../imgjson/ImageUploader";
 // -----------------------------------------------------------------------------------------------------------------//
 // 修改script 為按鈕 跳出多個文字選項 並且可以選值
 // 先用useState 
@@ -73,11 +74,13 @@ const handleHiresCheckboxChange = (value) => {
   
     // 查看更新初始值狀態
     console.log(`Field ${fieldName} updated to:`, value);
-    
+    console.log(imgData);
   };
 
 //------------------------------------------------------------------------------------------------------------------------------------//
-
+  const handleImageUpload = (newImages) => {
+   handleFormDataChange("init_images", newImages);
+   };
   const handleGenerateClick = () => {
     const confirmed = window.confirm("确定要提交吗?");
     if (confirmed) {
@@ -154,6 +157,9 @@ return (
         <ForScript value={imgData.alwayson_scripts} 
               onChange={(value)=>handleFormDataChange("alwayson_scripts",value)}/>
        </div>):null}
+      </div>
+      <div>
+        <ImageUploader value={imgData.init_images} onChange={handleImageUpload}/>
       </div>
     </div>
   );

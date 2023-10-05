@@ -26,6 +26,8 @@ import UpscaleBy from "../ForHireFix/UpscaleBy";
 import HireSteps from "../ForHireFix/HireSteps";
 import ResizeHeight from "../ForHireFix/ResizeHeight";
 import ResizeWidth from "../ForHireFix/ResizeWidth";
+
+
 // lazy 動態加載
 function TxtPage() {
   const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
@@ -105,6 +107,31 @@ function TxtPage() {
     return input.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase();
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   return (
     <div className="TXTcontanier">
       <div style={{ position: "absolute", left: "300px" }}>
