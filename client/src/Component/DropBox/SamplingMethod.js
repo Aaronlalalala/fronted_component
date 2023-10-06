@@ -18,8 +18,8 @@ function SamplingMethod({ value, onChange }) {
   return (
     <div className="dropdown-container">
       <span style={{ color: "black" }}>SamplingMethod</span>
-      <button onClick={toggleDropdown} className="dropdown-button">
-        {selectedValue || '选择一个值'}
+      <button onClick={toggleDropdown} className="dropdown-button" style={{width:500,height:70,top:50 ,left:-20}}>
+        {selectedValue || '選擇一個值'}
       </button>
       <ul className={`dropdown-menu ${isOpen ? 'active' : ''}`}>
         <li onClick={() => handleOptionClick("Euler a")}>Euler a</li>

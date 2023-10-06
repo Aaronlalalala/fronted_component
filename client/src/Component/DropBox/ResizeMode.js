@@ -16,7 +16,7 @@ function ResizeMode({ value, onChange }) {
   return (
     <div className="dropdown-container">
       <span style={{ color: "black" }}>ResizeMode</span>
-      <button onClick={toggleDropdown} className="dropdown-button">
+      <button onClick={toggleDropdown} className="dropdown-button" style={{ width:500, left:-20, top:50}}>
         {value || '選擇一個值'}
       </button>
       <ul className={`dropdown-menu ${isOpen ? 'active' : ''}`}>

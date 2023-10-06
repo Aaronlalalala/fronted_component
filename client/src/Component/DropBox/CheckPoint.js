@@ -16,9 +16,9 @@ function CheckPoint({ value, onChange }) {
   };
 
   return (
-    <div className="dropdown-container">
+    <div className="dropdown-container" style={{width:300,top:-10}}>
       <span style={{ color: "black" }}>Stable Diffusion CheckPoint</span>
-      <button onClick={toggleDropdown} className="dropdown-button">
+      <button onClick={toggleDropdown} className="dropdown-button" style={{width:300,left:0}}>
         {value || '選擇一個值'}
       </button>
       <ul className={`dropdown-menu ${isOpen ? 'active' : ''}`}>

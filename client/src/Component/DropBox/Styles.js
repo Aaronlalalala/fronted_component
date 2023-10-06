@@ -11,15 +11,15 @@ function Styles({ value, onChange }) {
 
   const handleOptionClick = (value) => {
     setSelectedValue(value);
-    onChange(value); // 呼叫父元件的事件處理函數
+    onChange(value); // 呼叫父元件
     toggleDropdown();
   };
 
   return (
     <div className="dropdown-container">
       <span style={{ color: "black" }}>Styles</span>
-      <button onClick={toggleDropdown} className="dropdown-button">
-        {selectedValue || '选择一个值'}
+      <button onClick={toggleDropdown} className="dropdown-button" style={{width:300,height:95,top:50 ,left:0}}>
+        {selectedValue || '選擇一個值'}
       </button>
       <ul className={`dropdown-menu ${isOpen ? 'active' : ''}`}>
         <li onClick={() => handleOptionClick(1)}>1</li>

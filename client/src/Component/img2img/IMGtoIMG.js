@@ -23,9 +23,7 @@ import ResizeMode from "../DropBox/ResizeMode";
 import DenoisingS2 from "../ForHireFix/DenoisingS2";
 import ForScript from "../ForScript/ForScript";
 import ImageUploader from "../imgjson/ImageUploader";
-// -----------------------------------------------------------------------------------------------------------------//
-// 修改script 為按鈕 跳出多個文字選項 並且可以選值
-// 先用useState 
+
 function ImgPage() {
   const [isHiresChecked, setIsHiresChecked] = useState(false); // Initialize with the default value (false)
   const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
@@ -56,31 +54,26 @@ function ImgPage() {
     include_init_images: false,
     alwayson_scripts:{"lora":[0]}
   });
-//------------------------------------------------------------------------------------------------------------------------------------//
-  
-const handleHiresCheckboxChange = (value) => {
-  setIsHiresChecked(value);
-  }; 
- 
+
+  // 轉換字形
   function camelCaseToSnakeCase(input) {
     return input.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase();
   }
-  
+  const handleHiresCheckboxChange = (value) => {
+    setIsHiresChecked(value);
+    }; 
+
   const handleFormDataChange = (fieldName, value) => {
     setImgData((prevData) => ({
       ...prevData,
       [fieldName]: value,
     }));
   
-    // 查看更新初始值狀態
+    // 查看更新
     console.log(`Field ${fieldName} updated to:`, value);
     console.log(imgData);
   };
-
-//------------------------------------------------------------------------------------------------------------------------------------//
-  const handleImageUpload = (newImages) => {
-   handleFormDataChange("init_images", newImages);
-   };
+  
   const handleGenerateClick = () => {
     const confirmed = window.confirm("确定要提交吗?");
     if (confirmed) {
@@ -99,7 +92,6 @@ const handleHiresCheckboxChange = (value) => {
     }
   };
 
-//-------------------------------------------------------------------------------------------------------------------------------------//
   async function jsonFunction(imgToImgData) {
     try {
       await axios.post("https://localhost:8080/api/img2img/process", imgToImgData.request);
@@ -108,58 +100,179 @@ const handleHiresCheckboxChange = (value) => {
       console.log("數據出錯:", error);
     }
   }
-//-------------------------------------------------------------------------------------------------------------------------------------//
+
+  return (
+    <div className="IMGcontainer" style={{padding:20}}>
+     
+      <div className="img2img-title-grid">
+        <div className="txt2img-InstAI-Icon" >
+          <img src="/img/instai_icon.png" alt="instai" style={{height:100}}/>
+        </div>
+
+        <div className="img2img-section1">
+          <div className="NavStyle">
+            <span>
+              <NavLink to="/TXTtoIMG">
+                <button>TxtPage</button>
+              </NavLink>
+            </span>
+         </div>
+        </div>
+
+      </div>
+
+
+
+      <div className="img2img-first-grid">
+
+        <div className="grid-line"></div>
+
+        <div className="img2img-section2">
+          <div >
+            <CheckPoint value={imgData.override_settings.sd_model_checkpoint} onChange={(value)=>handleFormDataChange("override_settings.sd_model_checkpoint",value)} />
+           </div>
+        </div>
+
+      </div>
  
-return (
-    <div className="IMGcontainer">
-      <div style={{ width: "25%" }}>
-        <CheckPoint value={imgData.override_settings.sd_model_checkpoint} onChange={(value)=>handleFormDataChange("override_settings.sd_model_checkpoint",value)} />
+      <div className="img2img-second-grid">
+
+        <div className="img2img-section3">
+          <div className="PromptStyle">
+            <Prompt value={imgData.prompt} onChange={(value) => handleFormDataChange("prompt",value)} />
+          </div>
+        </div>
+
+        <div className="img2img-section4">
+          <div className="ButtonStyle">
+            <IntergrateCLIP />
+          </div>
+        </div>
+
+        <div className="img2img-section5">
+          <div className="ButtonStyle">
+            <Generate onClick={handleGenerateClick} />
+          </div>
+        </div>
+
+        <div className="img2img-section6">
+          <div className="PromptStyle">
+            <NegativePrompt value={imgData.negative_prompt} onChange={(value) => handleFormDataChange("negative_prompt",value)} />
+          </div>
+        </div>
+
+        <div className="img2img-section7">
+         <div className="ButtonStyle">
+              <DeepBooru />
+           </div>
+        </div>
       </div>
-      <div className="NavStyle">
-        <span>
-          <NavLink to="/">
-            <button>TxtPage</button>
-          </NavLink>
-        </span>
+
+      <div className="img2img-third-grid">
+
+        <div className="img2img-section9">
+          <div className="DropBoxStyle">
+            <ResizeMode value={imgData.resize_mode} onChange={(value) => handleFormDataChange("resize_mode",value)}/>
+          </div>
+        </div>
+     
+      <div className="img2img-fourth-grid">
+
+        <div className="img2img-section10">
+          <div className="DropBoxStyle">
+            <SamplingMethod value={imgData.sampler_index} onChange={(value) => handleFormDataChange("sampler_index",value)} />
+          </div>
+        </div>
+
+        <div className="img2img-section11">
+          <div className="SliderStyle">
+           <SamplingStep value={imgData.steps} onChange={(value) => handleFormDataChange("steps",value)} />
+          </div>
+        </div>
+
+    
       </div>
-      <div className="PromptStyle">
-       <Prompt value={imgData.prompt} onChange={(value) => handleFormDataChange("prompt",value)} />
-       <NegativePrompt value={imgData.negative_prompt} onChange={(value) => handleFormDataChange("negative_prompt",value)} />
+
+      <div className="img2img-fifth-grid">
+        <div className="img2img-section12">
+          <div className="CheckBoxStyle">
+            <RestoreFaces value={imgData.restore_faces} onChange={(value) => handleFormDataChange("restore_faces",value)}/>
+          </div>
+        </div>
+
+        <div className="img2img-section13">
+          <div className="CheckBoxStyle">
+            <Tilling value={imgData.tiling} onChange={(value) => handleFormDataChange("tiling",value)} />
+          </div>
+        </div>
+
       </div>
-      <div className="ButtonStyle">
-        <IntergrateCLIP /> 
-        <DeepBooru />
-        <Generate onClick={handleGenerateClick} />
+
+      <div className="img2img-sixth-grid">
+
+        <div className="img2img-section14">
+          <div className="SliderStyle">
+            <Width value={imgData.width} onChange={(value) => handleFormDataChange("width",value)} />
+          </div>
+        </div>
+
+        <div className="img2img-section15">
+          <div className="SliderStyle">
+            <BatchCount value={imgData.n_iter} onChange={(value) => handleFormDataChange("n_iter",value)} />
+          </div>
+        </div>
+
+        <div className="img2img-section16">
+          <div className="SliderStyle">
+            <Height value={imgData.height} onChange={(value) => handleFormDataChange("height",value)}/>
+          </div>
+        </div>
+
+        <div className="img2img-section17">
+          <div className="SliderStyle">
+            <BatchSize value={imgData.batch_size} onChange={(value) => handleFormDataChange('batch_size', value)} />
+          </div>
+        </div>
+
       </div>
-      <div className="DropBoxStyle">
-        <SamplingMethod value={imgData.sampler_index} onChange={(value) => handleFormDataChange("sampler_index",value)} />
-        <ResizeMode value={imgData.resize_mode} onChange={(value) => handleFormDataChange("resize_mode",value)}></ResizeMode>
-      </div>
-      <div className="CheckBoxStyle">
-       <RestoreFaces value={imgData.restore_faces} onChange={(value) => handleFormDataChange("restore_faces",value)}/>
-       <Tilling value={imgData.tiling} onChange={(value) => handleFormDataChange("tiling",value)} />
-      </div>
-      <div className="SliderStyle">
-       <SamplingStep value={imgData.steps} onChange={(value) => handleFormDataChange("steps",value)} />
-       <Width value={imgData.width} onChange={(value) => handleFormDataChange("width",value)} />
-       <Height value={imgData.height} onChange={(value) => handleFormDataChange("height",value)}/>
-       <BatchCount value={imgData.n_iter} onChange={(value) => handleFormDataChange("n_iter",value)}/>
-       <BatchSize value={imgData.batch_size} onChange={(value) => handleFormDataChange('batch_size', value)} />
-       <CFGScale value={imgData.cfg_scale} onChange={(value) => handleFormDataChange("cfg_scale",value)} />
-       <DenoisingS2 value={imgData.denoising_strength} onChange={(value) => handleFormDataChange("denoising_strength",value)} />
-       </div>
-       <div className="PromptStyle">
-       <Seed value={imgData.seed} onChange={(value)=>handleFormDataChange("seed",value) }/>
-       </div>
-       <div className="DropBoxStyle">
-       <Script onChange={(value) => handleHiresCheckboxChange(value)} />
-       {isHiresChecked?(<div>
-        <ForScript value={imgData.alwayson_scripts} 
-              onChange={(value)=>handleFormDataChange("alwayson_scripts",value)}/>
-       </div>):null}
-      </div>
-      <div>
-        <ImageUploader value={imgData.init_images} onChange={handleImageUpload}/>
+
+      <div className="img2img-seventh-grid">
+
+        <div className="img2img-section18">
+          <div className="SliderStyle">
+            <CFGScale value={imgData.cfg_scale} onChange={(value) => handleFormDataChange("cfg_scale",value)} />
+          </div>
+        </div>
+
+        <div className="img2img-section19">
+          <div className="SliderStyle">
+            <DenoisingS2 value={imgData.denoising_strength} onChange={(value) => handleFormDataChange("denoising_strength",value)} />
+          </div>
+        </div>
+
+        <div className="img2img-section20">
+          <div className="PromptStyle">
+            <Seed value={imgData.seed} onChange={(value)=>handleFormDataChange("seed",value) }/>
+          </div>
+        </div>
+
+        <div className="img2img-section21">
+          <div className="DropBoxStyle">
+            <Script onChange={(value) => handleHiresCheckboxChange(value)} />
+              {isHiresChecked?(<div>
+                <ForScript value={imgData.alwayson_scripts} 
+                onChange={(value)=>handleFormDataChange("alwayson_scripts",value)}/>
+                </div>):null}
+          </div>
+        </div>
+
+        <div className="img2img-section22">
+           <div>
+            <ImageUploader value={imgData.init_images} onChange={(value)=>handleFormDataChange("init_images",value)}/>
+           </div>
+        </div>
+
+        </div>
       </div>
     </div>
   );
