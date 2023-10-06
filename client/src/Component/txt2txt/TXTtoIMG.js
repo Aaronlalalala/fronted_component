@@ -122,6 +122,11 @@ function TxtPage() {
                   <button>ImgPage</button>
                </NavLink>
             </span>
+            <span>
+              <NavLink to="/ModelPage">
+                <button style={{position:"relative",left:"50px"}}>ModelPage</button>
+              </NavLink>
+            </span>
           </div>
         </div>
 

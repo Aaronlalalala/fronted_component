@@ -116,6 +116,11 @@ function ImgPage() {
                 <button>TxtPage</button>
               </NavLink>
             </span>
+            <span>
+              <NavLink to="/ModelPage">
+                <button style={{position:"relative",left:"100px",top:"-34px"}}>ModelPage</button>
+              </NavLink>
+            </span>
          </div>
         </div>
 
