@@ -2,6 +2,7 @@ import {BrowserRouter as Router ,Routes,Route} from 'react-router-dom';
 import './App.css';
 import IMGtoIMG from "./Component/img2img/IMGtoIMG";
 import TXTtoIMG from "./Component/txt2txt/TXTtoIMG";
+import ModelPage from "./Component/Model/modelPage";
 function App() {
   
   return (
@@ -10,6 +11,7 @@ function App() {
      <Routes>
       <Route path='/' element={<TXTtoIMG/>}></Route>
       <Route path="/IMGtoIMG" element={<IMGtoIMG/>}></Route>
+      <Route path="/ModelPage" element={<ModelPage/>}/>
      </Routes>
     </Router>
   </div>
