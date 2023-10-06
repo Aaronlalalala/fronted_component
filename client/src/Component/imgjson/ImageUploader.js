@@ -12,48 +12,50 @@ const ImageUploader = ({ defaultValue, onChange }) => {
         new Promise((resolve) => {
           const reader = new FileReader();
           reader.onload = (event) => {
-            resolve(event.target.result);
+            resolve({ data: event.target.result, id: Date.now(), file: file });
           };
           reader.readAsDataURL(file);
         })
       )
     ).then((newImages) => {
-      
-      const updatedSelectedImages = [...selectedImages, ...newImages];
-      const updatedPreviewImages = [...previewImages, ...newImages];
-
-     
-      const base64Images = updatedSelectedImages.filter((image) =>
-        image.startsWith("data:image/")
-      );
-
-      setSelectedImages(base64Images);
-      setPreviewImages(base64Images);
+      setSelectedImages((prevSelectedImages) => [...prevSelectedImages, ...newImages]);
+      setPreviewImages((prevPreviewImages) => [...prevPreviewImages, ...newImages]);
 
       if (onChange) {
-        onChange(base64Images); 
+        onChange(newImages.map((image) => image.data.replace(/^data:image\/[a-zA-Z]+;base64,/, '')));
       }
     });
   };
 
   const handleDeleteImage = (index) => {
-    const updatedSelectedImages = [...selectedImages];
-    const updatedPreviewImages = [...previewImages];
+    setSelectedImages((prevSelectedImages) => {
+      const updatedSelectedImages = [...prevSelectedImages];
+      updatedSelectedImages.splice(index, 1);
+      return updatedSelectedImages;
+    });
 
-    updatedSelectedImages.splice(index, 1);
-    updatedPreviewImages.splice(index, 1);
-
-    setSelectedImages(updatedSelectedImages);
-    setPreviewImages(updatedPreviewImages);
+    setPreviewImages((prevPreviewImages) => {
+      const updatedPreviewImages = [...prevPreviewImages];
+      updatedPreviewImages.splice(index, 1);
+      return updatedPreviewImages;
+    });
 
     if (onChange) {
-      onChange(updatedSelectedImages); 
+      onChange(selectedImages.filter((image, i) => i !== index).map((image) => image.data.replace(/^data:image\/[a-zA-Z]+;base64,/, '')));
     }
   };
 
   const handleUpload = () => {
     if (onChange) {
-      onChange(selectedImages); 
+      onChange(selectedImages.map((image) => image.data.replace(/^data:image\/[a-zA-Z]+;base64,/, '')));
+    }
+  };
+
+  const handleDeleteAllImages = () => {
+    setSelectedImages([]);
+    setPreviewImages([]);
+    if (onChange) {
+      onChange([]);
     }
   };
 
@@ -67,9 +69,9 @@ const ImageUploader = ({ defaultValue, onChange }) => {
       />
       <div style={{ display: "flex", flexWrap: "wrap" }}>
         {previewImages.map((image, index) => (
-          <div key={index} style={{ margin: "10px", position: "relative" }}>
+          <div key={image.id} style={{ margin: "10px", position: "relative" }}>
             <img
-              src={image}
+              src={image.data}
               alt={`Image ${index + 1}`}
               style={{
                 maxWidth: "200px",
@@ -77,6 +79,7 @@ const ImageUploader = ({ defaultValue, onChange }) => {
                 width: "auto",
                 height: "auto",
               }}
+              loading="lazy"
             />
             <button
               onClick={() => handleDeleteImage(index)}
@@ -98,6 +101,7 @@ const ImageUploader = ({ defaultValue, onChange }) => {
       </div>
       <div>
         <button onClick={handleUpload}>提交</button>
+        <button onClick={handleDeleteAllImages}>刪除全部照片</button>
       </div>
     </div>
   );
