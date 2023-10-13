@@ -3,6 +3,7 @@ import './App.css';
 import IMGtoIMG from "./Component/img2img/IMGtoIMG";
 import TXTtoIMG from "./Component/txt2txt/TXTtoIMG";
 import ModelPage from "./Component/Model/modelPage";
+import Decode from "./Component/Model/Decode";
 function App() {
   
   return (
@@ -12,6 +13,7 @@ function App() {
       <Route path='/' element={<TXTtoIMG/>}></Route>
       <Route path="/IMGtoIMG" element={<IMGtoIMG/>}></Route>
       <Route path="/ModelPage" element={<ModelPage/>}/>
+      <Route path="/Decode" element={<Decode/>}/>
      </Routes>
     </Router>
   </div>

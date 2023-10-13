@@ -121,6 +121,11 @@ function ImgPage() {
                 <button style={{position:"relative",left:"100px",top:"-34px"}}>ModelPage</button>
               </NavLink>
             </span>
+            <span>
+              <NavLink to="/Decode">
+                <button >SD生成結果</button>
+              </NavLink>
+            </span>
          </div>
         </div>
 

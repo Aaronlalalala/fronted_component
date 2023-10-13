@@ -127,6 +127,11 @@ function TxtPage() {
                 <button style={{position:"relative",left:"50px"}}>ModelPage</button>
               </NavLink>
             </span>
+            <span>
+              <NavLink to ="/Decode">
+                <button>SD生成結果</button>
+              </NavLink>
+            </span>
           </div>
         </div>
 
